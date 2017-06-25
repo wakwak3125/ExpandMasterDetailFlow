@@ -27,7 +27,7 @@ object DataBindingFunctions {
 
     @BindingAdapter("profileImage")
     @JvmStatic fun loadProfileImage(v: ImageView, url: String) {
-        if (url.isNotEmpty()) Picasso.with(v.context).load(url).into(v)
+        if (url.isNotEmpty()) Picasso.with(v.context).load(url).transform(CircleTransformer()).into(v)
     }
 
     @BindingAdapter("postTheme")
