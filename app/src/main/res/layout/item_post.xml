@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <variable
             name="post"
             type="com.wakwak.expandmasterdetailflow.Post" />
@@ -15,102 +19,135 @@
         android:id="@+id/layout_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="192dp"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
 
-        <RelativeLayout
-            android:id="@+id/layout_user"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/image_user"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@mipmap/ic_launcher"
-                app:profileImage="@{post.userImage}" />
+                android:id="@+id/background_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:backgroundImage="@{post.backgroundImage}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:margin="@{0}"
+                app:radius="@{10}"
+                tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/text_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/image_user"
-                android:layout_toEndOf="@+id/image_user"
-                android:text="@{post.user}"
-                android:textStyle="bold"
-                tools:text="国内ニュース" />
-
-            <TextView
-                android:id="@+id/text_reason"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_user"
-                android:layout_toEndOf="@+id/image_user"
-                android:text="@{post.reason}"
-                android:textSize="12sp"
-                tools:text="セイコーエプソン株式会社に関連" />
-
-            <TextView
-                android:id="@+id/text_title"
+            <RelativeLayout
+                android:id="@+id/layout_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_user"
-                android:layout_marginTop="8dp"
-                android:maxLines="4"
-                android:text="@{post.title}"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="男性向け腕時計の月額レンタルサービス「KARITOKE」が開始" />
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/text_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_title"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@{post.description}"
-                android:textSize="14sp"
-                tools:text="Description Description Description Description Description Description Description Description Description Description Description Description Description Description" />
+                <ImageView
+                    android:id="@+id/image_user"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:profileImage="@{post.userImage}" />
 
-            <TextView
-                android:id="@+id/text_source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_description"
-                android:layout_marginTop="4dp"
-                android:maxLines="4"
-                android:text="@{post.source}"
-                android:textSize="12sp"
-                tools:text="朝日新聞" />
+                <TextView
+                    android:id="@+id/text_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/image_user"
+                    android:layout_toEndOf="@+id/image_user"
+                    android:text="@{post.user}"
+                    android:textStyle="bold"
+                    app:postTheme="@{post.theme}"
+                    tools:text="国内ニュース" />
 
-            <ImageView
-                android:id="@+id/image_post"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_source"
-                android:layout_marginTop="8dp"
-                app:foregroundImage="@{post.foregroundImage}"
-                tools:layout_height="128dp" />
+                <TextView
+                    android:id="@+id/text_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_user"
+                    android:layout_toEndOf="@+id/image_user"
+                    android:text="@{post.reason}"
+                    android:textSize="12sp"
+                    app:postTheme="@{post.theme}"
+                    tools:text="セイコーエプソン株式会社に関連" />
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_user"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="4"
+                    android:text="@{post.title}"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:postTheme="@{post.theme}"
+                    tools:text="男性向け腕時計の月額レンタルサービス「KARITOKE」が開始" />
+
+                <TextView
+                    android:id="@+id/text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_title"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{post.description}"
+                    android:textSize="14sp"
+                    android:visibility="@{TextUtils.isEmpty(post.description) ? View.GONE : View.VISIBLE}"
+                    app:postTheme="@{post.theme}"
+                    tools:text="Description Description Description Description Description Description Description Description Description Description Description Description Description Description" />
+
+                <TextView
+                    android:id="@+id/text_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_description"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="4"
+                    android:text="@{post.source}"
+                    android:textSize="12sp"
+                    app:postTheme="@{post.theme}"
+                    tools:text="朝日新聞" />
+
+                <ImageView
+                    android:id="@+id/image_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_source"
+                    android:layout_marginTop="8dp"
+                    app:foregroundImage="@{post.foregroundImage}"
+                    tools:layout_height="128dp"
+                    tools:visibility="gone" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/layout_reaction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_post"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:gravity="bottom">
+                android:gravity="bottom"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_user">
 
                 <TextView
                     android:id="@+id/likes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="64Likes" />
+                    android:text="64Likes"
+                    android:textSize="12sp"
+                    app:postTheme="@{post.theme}" />
 
                 <TextView
                     android:id="@+id/comments"
@@ -119,7 +156,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="4dp"
                     android:layout_toEndOf="@+id/likes"
-                    android:text="2Comments" />
+                    android:text="2Comments"
+                    android:textSize="12sp"
+                    app:postTheme="@{post.theme}" />
 
                 <ImageView
                     android:id="@+id/button_comment"
@@ -139,7 +178,7 @@
 
             </RelativeLayout>
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
 </layout>
