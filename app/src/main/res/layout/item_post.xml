@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.wakwak.expandmasterdetailflow.Post" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/layout_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="192dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <RelativeLayout
+            android:id="@+id/layout_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/image_user"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/ic_launcher"
+                app:profileImage="@{post.userImage}" />
+
+            <TextView
+                android:id="@+id/text_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/image_user"
+                android:layout_toEndOf="@+id/image_user"
+                android:text="@{post.user}"
+                android:textStyle="bold"
+                tools:text="国内ニュース" />
+
+            <TextView
+                android:id="@+id/text_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_user"
+                android:layout_toEndOf="@+id/image_user"
+                android:text="@{post.reason}"
+                android:textSize="12sp"
+                tools:text="セイコーエプソン株式会社に関連" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_user"
+                android:layout_marginTop="8dp"
+                android:maxLines="4"
+                android:text="@{post.title}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="男性向け腕時計の月額レンタルサービス「KARITOKE」が開始" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_title"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{post.description}"
+                android:textSize="14sp"
+                tools:text="Description Description Description Description Description Description Description Description Description Description Description Description Description Description" />
+
+            <TextView
+                android:id="@+id/text_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_description"
+                android:layout_marginTop="4dp"
+                android:maxLines="4"
+                android:text="@{post.source}"
+                android:textSize="12sp"
+                tools:text="朝日新聞" />
+
+            <ImageView
+                android:id="@+id/image_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_source"
+                android:layout_marginTop="8dp"
+                app:foregroundImage="@{post.foregroundImage}"
+                tools:layout_height="128dp" />
+
+            <RelativeLayout
+                android:id="@+id/layout_reaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_post"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="64Likes" />
+
+                <TextView
+                    android:id="@+id/comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_toEndOf="@+id/likes"
+                    android:text="2Comments" />
+
+                <ImageView
+                    android:id="@+id/button_comment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@+id/button_like"
+                    android:src="@drawable/ic_mode_comment_grey_500_24dp" />
+
+                <ImageView
+                    android:id="@+id/button_like"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_favorite_red_200_24dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>
