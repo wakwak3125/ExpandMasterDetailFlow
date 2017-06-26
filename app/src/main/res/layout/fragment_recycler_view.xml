@@ -7,8 +7,15 @@
     </data>
 
     <RelativeLayout
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -16,6 +23,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:padding="16dp"
+            android:background="@android:color/transparent"
             tools:listitem="@layout/item_post" />
 
     </RelativeLayout>
